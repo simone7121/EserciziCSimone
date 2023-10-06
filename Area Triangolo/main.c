@@ -1,5 +1,5 @@
 #include <stdio.h>
-// Inclusione della libreria di standard Input/Output
+// Inclusione della libreria di standard Input/Output 
 
 #include <conio.h> 
 // For getch()
