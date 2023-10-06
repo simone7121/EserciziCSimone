@@ -1,0 +1,101 @@
+/*
+
+    ~ FILE:                 launch.json
+
+    ~ DESCRIZIONE:          Il file launch.json contiene la configurazione per l'avvio dei programmi C/C++ utilizzando l'IDE Visual Studio Code. 
+                            Questo file definisce le diverse configurazioni di lancio disponibili per eseguire i programmi C/C++ all'interno dell'IDE.
+
+                            Le configurazioni di lancio specificate nel file includono:
+
+                                "🔨 & 🪳" (Compila e DEBUGGA): Questa configurazione avvia il programma con una console esterna. 
+                                Viene utilizzato il debugger "gdb" fornito da MinGW per il debug. 
+                                Il percorso dell'eseguibile del debugger è impostato su "C:\MinGW\bin\gdb.exe". 
+                                Prima del lancio, viene eseguito un comando di configurazione per abilitare la formattazione leggibile nel debugger. 
+                                Prima del lancio del programma, viene eseguito il task "C/C++: g++.exe build active file" per compilare il file attivo.
+
+                                "🔨 & 🏃" (Compila ed ESEGUI): Questa configurazione avvia il programma con una console esterna. 
+                                Utilizza lo stesso debugger "gdb" e le stesse impostazioni della configurazione precedente. 
+                                Prima del lancio del programma, viene eseguito il task "C/C++: g++.exe build & run active file" per compilare e eseguire il file attivo.
+
+                            È importante assicurarsi di avere correttamente configurato il percorso dell'eseguibile del debugger "gdb" e di avere 
+                            i task di compilazione appropriati nel caso di utilizzo di Visual Studio Code.
+    
+    ~ Data Modifica:        06/10/2023
+
+    ~ Versione Rilasciata:  V 1.0
+
+    ~ Powered By:           Simone D'Anna
+
+             _            _        
+           / /\         /\ \       
+          / /  \       /  \ \____  
+         / / /\ \__   / /\ \_____\ 
+        / / /\ \___\ / / /\/___  / 
+        \ \ \ \/___// / /   / / /  
+         \ \ \     / / /   / / /   
+     _    \ \ \   / / /   / / /    
+    /_/\__/ / / _ \ \ \__/ / / _   
+    \ \/___/ //\_\ \ \___\/ //\_\  
+     \_____\/ \/_/  \/_____/ \/_/  
+                                  
+
+*/
+
+{
+	// Use IntelliSense to learn 
+	// about possible attributes.
+	// Hover to view descriptions 
+	// of existing attributes.
+	// For more information, visit: 
+	// https://go.microsoft.com/fwlink/?linkid=830387
+
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "🔨 & 🪳",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "gdb",
+			// ! ATTENZIONE !
+            // Inserire in "miDebuggerPath" la CORRETTA directory dell eseguibile g++.exe !
+			"miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "C/C++: g++.exe build active file"
+		},
+		{
+			"name": "🔨 & 🏃",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			// ! ATTENZIONE !
+            // Inserire in "miDebuggerPath" la CORRETTA directory dell eseguibile g++.exe !
+			"miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "C/C++: g++.exe build & run active file"
+		}
+	]
+}

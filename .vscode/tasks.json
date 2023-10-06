@@ -1,0 +1,87 @@
+/*
+
+    ~ FILE:                 tasks.json
+
+    ~ DESCRIZIONE:          Il file tasks.json contiene la configurazione dei task per compilare ed eseguire 
+                            file C/C++ utilizzando l'IDE Visual Studio Code. 
+
+                            I task sono definiti in formato JSON e consentono di compilare il file attivo nell'IDE, 
+                            generando un file eseguibile, e di compilare ed eseguire il file attivo nello 
+                            stesso ambiente. 
+
+                            Ogni task specifica il percorso dell'eseguibile g++.exe da utilizzare per la compilazione, 
+                            gli argomenti da passare all'eseguibile e altre opzioni come la directory di lavoro corrente. 
+
+                            I problem matcher sono utilizzati per identificare gli errori di compilazione. 
+
+                            Assicurarsi di impostare correttamente il percorso dell'eseguibile g++.exe nelle 
+                            sezioni appropriate nel caso di utilizzo di Visual Studio Code.
+    
+    ~ Data Modifica:        06/10/2023
+
+    ~ Versione Rilasciata:  V 1.0
+
+    ~ Powered By:           Simone D'Anna
+
+             _            _        
+           / /\         /\ \       
+          / /  \       /  \ \____  
+         / / /\ \__   / /\ \_____\ 
+        / / /\ \___\ / / /\/___  / 
+        \ \ \ \/___// / /   / / /  
+         \ \ \     / / /   / / /   
+     _    \ \ \   / / /   / / /    
+    /_/\__/ / / _ \ \ \__/ / / _   
+    \ \/___/ //\_\ \ \___\/ //\_\  
+     \_____\/ \/_/  \/_____/ \/_/  
+                                  
+
+*/
+{
+    "version": "2.0.0",
+    "tasks": [
+        // Task per Compilare il file attivo nell'ide.
+        {
+            "type": "shell",
+            "label": "C/C++: g++.exe build active file",
+            // ! ATTENZIONE !
+            // Inserire in "command" la CORRETTA directory dell eseguibile g++.exe !
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-std=c++11",
+                "-O2",
+                "-Wall",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            }
+        },
+        // Task per Compilare ed Eseguire il file attivo nell'ide.
+        {
+            "type": "shell",
+            "label": "C/C++: g++.exe build & run active file",
+            // ! ATTENZIONE !
+            // Inserire in "command" la CORRETTA directory dell eseguibile g++.exe !
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ]
+}
